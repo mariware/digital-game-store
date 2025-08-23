@@ -48,7 +48,7 @@ export function Header() {
                   asChild
                   className={`${navigationMenuTriggerStyle()} text-lg`}
                 >
-                  <Link href="/">Browse</Link>
+                  <Link href="/browse">Browse</Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
@@ -103,7 +103,7 @@ export function Header() {
               asChild
               className={navigationMenuTriggerStyle()}
             >
-              <Link href="/">Browse</Link>
+              <Link href="/browse">Browse</Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>

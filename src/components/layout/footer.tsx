@@ -13,7 +13,7 @@ export function Footer() {
       <div className="flex flex-col w-full font-special items-center sm:flex-row sm:justify-around gap-2">
         <Logo variant="boxed" className="h-9 sm-2 sm:mb-0" />
         <Link
-          href="/"
+          href="/browse"
           className="w-fit px-4 data-[active=true]:focus:bg-background data-[active=true]:hover:bg-background data-[active=true]:bg-background/50 data-[active=true]:text-foreground hover:bg-background hover:text-foreground focus:bg-background focus:text-foreground focus-visible:ring-ring/50 rounded-sm p-2 transition-all outline-none focus-visible:ring-[3px] focus-visible:outline-1"
         >
           <span className="pt-0.5">Browse</span>

@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Dialog } from "@radix-ui/react-dialog";
 import { Footer } from "@/components/layout/footer";
+import StoreProvider from "@/store/storeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,15 +34,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${staatliches.className} ${staatliches.variable} antialiased`}
-      >
-        <Dialog>
-          <Header />
-          {children}
-          <Footer />
-        </Dialog>
-      </body>
+      <StoreProvider>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} ${staatliches.className} ${staatliches.variable} antialiased`}
+        >
+          <Dialog>
+            <Header />
+            {children}
+            <Footer />
+          </Dialog>
+        </body>
+      </StoreProvider>
     </html>
   );
 }
