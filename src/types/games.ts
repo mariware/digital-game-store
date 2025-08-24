@@ -41,6 +41,10 @@ export type GameDetails = GameSummary & {
   genres: NameTypes[];
   short_screenshots: ScreenshotsTypes[];
 };
+export type GameWithPrice = GameSummary & {
+  price: number | null;
+  currency: string | null;
+};
 
 // RAWG API responses
 export type GamesListResponse = PaginatedList<GameSummary>;
@@ -49,9 +53,12 @@ export type ScreenshotsResponse = PaginatedList<ScreenshotsTypes>;
 
 // Redux state shape for games slice
 export type GamesState = {
-  games: GameSummary[]; // from /games list
+  games: GameWithPrice[]; // from /games list
   searchedGames: GameSummary[]; // filtered list
   inCartGames: GameSummary[]; // cart items
   gameSpecification?: GameDetails; // single game detail
   gameScreenshots: ScreenshotsTypes[]; // screenshots for a game
 };
+
+// Modified response type
+export type GamesWithPriceList = PaginatedList<GameWithPrice>;

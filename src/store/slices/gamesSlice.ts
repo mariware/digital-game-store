@@ -4,6 +4,7 @@ import {
   GameDetails,
   ScreenshotsTypes,
   GamesState,
+  GameWithPrice,
 } from "../../types/games";
 import { saveToLocalStorage, loadFromLocalStorage } from "@/utils/storage";
 
@@ -19,7 +20,7 @@ export const gamesSlice = createSlice({
   name: "games",
   initialState,
   reducers: {
-    setGames: (state, action: PayloadAction<GameSummary[]>) => {
+    setGames: (state, action: PayloadAction<GameWithPrice[]>) => {
       state.games = action.payload;
     },
     setSearchedGames: (state, action: PayloadAction<GameSummary[]>) => {
