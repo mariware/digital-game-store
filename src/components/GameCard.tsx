@@ -52,7 +52,7 @@ export default function GameCard({
       <CardContent className="flex flex-col p-4 items-start">
         <span className="text-2xl font-special line-clamp-1">{game.name}</span>
       </CardContent>
-      {showAction && (
+      {showAction ? (
         <CardFooter className="text-sm px-4 pb-4 flex justify-between items-center">
           <span>
             {game.price ? `${game.currency} ${game.price}` : "Free to Play"}
@@ -63,6 +63,10 @@ export default function GameCard({
           >
             <Plus />
           </Button>
+        </CardFooter>
+      ) : (
+        <CardFooter className="text-sm px-4 pb-4 h-13 flex justify-between items-center">
+          <span>Coming Soon</span>
         </CardFooter>
       )}
     </Card>

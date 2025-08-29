@@ -17,7 +17,7 @@ import GameCarousel from "@/components/GameCarousel";
 const sections = [
   { key: "latest", title: "Just Released", url: "/api/latest-games" },
   { key: "top", title: "Most Played Right Now", url: "/api/top-games" },
-  { key: "upcoming", title: "Coming Soon", url: "/api/upcoming-games" },
+  { key: "upcoming", title: "Upcoming Titles", url: "/api/upcoming-games" },
 ] as const;
 
 export default function Latest() {
