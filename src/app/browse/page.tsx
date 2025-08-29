@@ -1,7 +1,5 @@
 "use client";
 
-/* eslint-disable @next/next/no-img-element */
-
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -18,26 +16,33 @@ import {
 } from "@/components/ui/carousel";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { setGames } from "@/store/slices/gamesSlice";
+import { resetGames, setGames } from "@/store/slices/gamesSlice";
 import { AspectRatio } from "@radix-ui/react-aspect-ratio";
 import { Plus } from "lucide-react";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { selectGameSet } from "@/store";
 
-export default function Browse() {
+export default function Latest() {
   const dispatch = useAppDispatch();
-  const games = useAppSelector((s) => s.games.games);
+  const pathname = usePathname();
+  const topGames = useAppSelector(selectGameSet("top"));
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api")
+    dispatch(resetGames());
+  }, [pathname, dispatch]);
+
+  useEffect(() => {
+    fetch("/api/top-games")
       .then((res) => res.json())
       .then((data) => {
-        dispatch(setGames(data));
+        dispatch(setGames({ key: "top", games: data }));
       })
       .finally(() => setLoading(false));
   }, [dispatch]);
 
-  console.log(games);
+  console.log(topGames);
 
   const [slidesToScroll, setSlidesToScroll] = useState(1);
 
@@ -61,7 +66,7 @@ export default function Browse() {
       <div className="relative flex flex-col gap-4">
         <h2 className="font-special text-3xl">Discover</h2>
         <Carousel opts={{ loop: true, slidesToScroll }}>
-          {loading || !Array.isArray(games) ? (
+          {loading || !Array.isArray(topGames) ? (
             <CarouselContent>
               {Array.from({ length: 4 }).map((_, i) => (
                 <CarouselItem
@@ -87,7 +92,7 @@ export default function Browse() {
             </CarouselContent>
           ) : (
             <CarouselContent>
-              {games?.map((game) => (
+              {topGames?.map((game) => (
                 <CarouselItem
                   key={game.id}
                   className="basis-1/1 sm:basis-1/2 md:basis-1/3 lg:basis-1/4"

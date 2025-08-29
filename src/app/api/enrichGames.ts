@@ -1,31 +1,10 @@
+import { GameSummary, GameWithPrice } from "@/types/games";
 import { NextResponse } from "next/server";
-import type {
-  GameSummary,
-  GameWithPrice,
-  GamesListResponse,
-} from "@/types/games";
-// import gamesMock from "@/mock/games.json";
-
-// const useMock = process.env.NODE_ENV === "development";
 
 const DEFAULT_CURRENCY = process.env.DEFAULT_CURRENCY || "USD";
 
-export async function GET() {
+export async function enrichGames(games: GameSummary[]) {
   try {
-    let games: GameSummary[] = [];
-
-    // if (useMock) {
-    //   games = (gamesMock as GamesListResponse).results;
-    // } else {
-    const res = await fetch(
-      `https://api.rawg.io/api/games?key=${process.env.RAWG_API_KEY}&page_size=40`,
-      { next: { revalidate: 60 } },
-    );
-    if (!res.ok) throw new Error("RAWG list fetch failed");
-    const data: GamesListResponse = await res.json();
-    games = data.results;
-    // }
-
     const searchResults = await Promise.allSettled(
       games.map(async (game) => {
         const searchUrl = `https://www.nexarda.com/api/v3/search?type=games&q=${encodeURIComponent(
