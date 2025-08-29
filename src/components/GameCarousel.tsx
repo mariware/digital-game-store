@@ -37,33 +37,31 @@ export default function GameCarousel({
   }, []);
 
   return (
-    <>
-      <h2 className="flex font-special text-3xl justify-center sm:justify-start sm:pl-12 w-full pt-12 lg:pt-16">
+    <Carousel opts={{ loop: true, slidesToScroll }} className="mx-12">
+      <h2 className="flex font-special text-3xl justify-center sm:justify-start w-full pb-4 text-center">
         {title}
       </h2>
-      <Carousel opts={{ loop: true, slidesToScroll }} className="mx-12">
-        <CarouselContent>
-          {loading || !Array.isArray(games)
-            ? Array.from({ length: 4 }).map((_, i) => (
-                <CarouselItem
-                  key={i}
-                  className="basis-1/1 sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
-                >
-                  <SkeletonCard />
-                </CarouselItem>
-              ))
-            : games.map((game) => (
-                <CarouselItem
-                  key={game.id}
-                  className="basis-1/1 sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
-                >
-                  <GameCard game={game} showAction={showAction} />
-                </CarouselItem>
-              ))}
-        </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
-      </Carousel>
-    </>
+      <CarouselContent>
+        {loading || !Array.isArray(games)
+          ? Array.from({ length: 4 }).map((_, i) => (
+              <CarouselItem
+                key={i}
+                className="basis-1/1 sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
+              >
+                <SkeletonCard />
+              </CarouselItem>
+            ))
+          : games.map((game) => (
+              <CarouselItem
+                key={game.id}
+                className="basis-1/1 sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
+              >
+                <GameCard game={game} showAction={showAction} />
+              </CarouselItem>
+            ))}
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+    </Carousel>
   );
 }

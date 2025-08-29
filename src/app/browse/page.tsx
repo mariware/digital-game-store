@@ -1,10 +1,7 @@
 "use client";
 
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import {
-  setLastFetchTime,
-  setSearchedGames,
-} from "@/store/slices/gamesSlice";
+import { setLastFetchTime, setSearchedGames } from "@/store/slices/gamesSlice";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import {
@@ -17,7 +14,7 @@ import {
 } from "@/components/ui/pagination";
 import GameCard, { SkeletonCard } from "@/components/GameCard";
 
-export default function Latest() {
+export default function Browse() {
   const dispatch = useAppDispatch();
   const pathname = usePathname();
 
@@ -37,16 +34,15 @@ export default function Latest() {
       .finally(() => setLoading(false));
   }, [pathname, page, dispatch]);
 
-  console.log(games);
-
   return (
-    <main className="flex flex-col gap-8 font-sans min-h-screen p-20 bg-foreground text-background">
-      <h1 className="flex font-special text-4xl justify-center sm:justify-start w-full">
+    <main className="flex flex-col gap-8 font-sans min-h-screen p-8 sm:p-12 md:p-16 lg:p-20 bg-foreground text-background">
+      <h1 className="flex flex-col gap-4 font-special text-4xl text-center sm:text-left w-full">
         All Games
+        <span className="flex font-sans justify-center sm:justify-start w-full text-center text-sm">
+          Showing {!loading ? `${(page - 1) * 36 + 1} to ${page * 36}` : `n`}{" "}
+          out of 180 results
+        </span>
       </h1>
-      <p className="flex justify-center sm:justify-start w-full">
-        Showing {(page - 1) * 36 + 1} to {page * 36} out of 180 results
-      </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {loading ? (
           Array.from({ length: 36 }).map((_, i) => <SkeletonCard key={i} />)

@@ -4,6 +4,7 @@ import {
   GamesState,
   GameWithPrice,
   GameDetailsWithPrice,
+  Genre,
 } from "../../types/games";
 import { saveToLocalStorage, loadFromLocalStorage } from "@/utils/storage";
 
@@ -20,6 +21,7 @@ const initialState: GamesState = {
     "lastFetchTime",
     undefined,
   ),
+  genres: loadFromLocalStorage<Genre[]>("genres", []),
 };
 
 export const gamesSlice = createSlice({
@@ -56,6 +58,13 @@ export const gamesSlice = createSlice({
       state.lastFetchTime = action.payload;
       saveToLocalStorage("lastFetchTime", state.gameSets);
     },
+    setGenres: (state, action: PayloadAction<Genre[]>) => {
+      state.genres = action.payload;
+      saveToLocalStorage("genres", state.genres);
+    },
+    resetGenres: (state) => {
+      state.genres = [];
+    },
   },
 });
 
@@ -67,6 +76,8 @@ export const {
   setGameSpecification,
   setGameScreenshots,
   setLastFetchTime,
+  setGenres,
+  resetGenres,
 } = gamesSlice.actions;
 
 export default gamesSlice.reducer;

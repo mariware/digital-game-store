@@ -12,7 +12,6 @@ export function Footer() {
     { href: "/browse", label: "Browse" },
     { href: "/latest", label: "Latest" },
     { href: "/categories", label: "Categories" },
-    { href: "/subscriptions", label: "Subscriptions" },
   ];
 
   const baseLinkClasses =

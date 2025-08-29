@@ -65,8 +65,8 @@ export default function Latest() {
   ]);
 
   return (
-    <main className="flex flex-col gap-8 font-sans min-h-screen pt-4 p-12 lg:p-20 lg:pt-4 bg-foreground text-background">
-      <div className="relative flex flex-col gap-4">
+    <main className="flex flex-col gap-8 font-sans min-h-screen p-8 sm:p-12 md:p-16 lg:p-20 bg-foreground text-background">
+      <div className="relative flex flex-col gap-12">
         {sections.map(({ key, title }) => (
           <GameCarousel
             key={key}
@@ -79,8 +79,9 @@ export default function Latest() {
       </div>
 
       <div className="pt-12 lg:pt-16 flex flex-col gap-4 items-center w-full">
-        <h3 className="font-special text-2xl">
-          Still 404? Let&apos;s find some more.
+        <h3 className="font-special text-2xl text-center">
+          Still 404?
+          <br className="sm:hidden" /> Let&apos;s find some more.
         </h3>
         <Link href="/browse">
           <Button

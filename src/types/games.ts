@@ -20,6 +20,15 @@ export type PlatformInfo = {
   name: string;
 };
 
+// game genre
+export type Genre = {
+  id: number;
+  name: string;
+  slug: string;
+  games_count: number;
+  image_background: string;
+};
+
 // game summary
 export type GameSummary = {
   id: number;
@@ -53,6 +62,7 @@ export type GameDetailsWithPrice = GameSummary & {
 // RAWG API responses
 export type GamesListResponse = PaginatedList<GameSummary>;
 export type GameDetailResponse = GameDetails;
+export type GenresResponse = PaginatedList<Genre>;
 export type ScreenshotsResponse = PaginatedList<ScreenshotsTypes>;
 
 // Redux state shape for games slice
@@ -63,6 +73,7 @@ export type GamesState = {
   gameSpecification?: GameDetailsWithPrice; // single game detail
   gameScreenshots: ScreenshotsTypes[]; // screenshots for a game
   lastFetchTime?: number; // timestamp of last fetch
+  genres: Genre[]; // available genres
 };
 
 // Modified response type

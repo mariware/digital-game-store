@@ -26,7 +26,6 @@ export function Header() {
     { href: "/browse", label: "Browse" },
     { href: "/latest", label: "Latest" },
     { href: "/categories", label: "Categories" },
-    { href: "/subscription", label: "Subscriptions" },
   ];
 
   const logoLinkClasses =
