@@ -10,10 +10,6 @@ export type PaginatedList<T> = {
 export type NameTypes = {
   name: string;
 };
-export type ScreenshotsTypes = {
-  id: number;
-  image: string;
-};
 export type PlatformInfo = {
   id: number;
   slug: string;
@@ -62,7 +58,6 @@ export type GameDetailsWithPrice = GameDetails & {
 export type GamesListResponse = PaginatedList<GameSummary>;
 export type GameDetailResponse = GameDetails;
 export type GenresResponse = PaginatedList<Genre>;
-export type ScreenshotsResponse = PaginatedList<ScreenshotsTypes>;
 
 // Redux state shape for games slice
 export type GamesState = {

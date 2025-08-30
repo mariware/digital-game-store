@@ -7,11 +7,12 @@ import { usePathname, useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
   setGameSpecification,
+  setInCartGames,
   setLastFetchTime,
 } from "@/store/slices/gamesSlice";
 import { use } from "react";
 import { Badge } from "@/components/ui/badge";
-import { ChevronLeft, Plus, StarHalfIcon, StarIcon } from "lucide-react";
+import { Check, ChevronLeft, Plus, StarHalfIcon, StarIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Game({
@@ -31,6 +32,12 @@ export default function Game({
       .find((g) => g.id == slug),
   );
   const gameDetails = useAppSelector((state) => state.games.gameSpecification);
+  const cart = useAppSelector((state) => state.games.inCartGames);
+
+  const addToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (gameSummary) dispatch(setInCartGames(gameSummary));
+  };
 
   useEffect(() => {
     fetch(`/api/games?id=${slug}`)
@@ -75,9 +82,18 @@ export default function Game({
                   </span>
                 )}
               </span>
-              <Button className="font-special rounded-l-none group">
-                <Plus className="group-hover:scale-130 transition-transform" />
-              </Button>
+              {cart.some((g) => g.id === gameSummary?.id) ? (
+                <Button className="font-special rounded-l-none group" disabled>
+                  <Check />
+                </Button>
+              ) : (
+                <Button
+                  className="font-special rounded-l-none group"
+                  onClick={addToCart}
+                >
+                  <Plus className="group-hover:scale-130 transition-transform" />
+                </Button>
+              )}
             </div>
           )}
         </div>

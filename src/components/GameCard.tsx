@@ -9,9 +9,11 @@ import {
 import { AspectRatio } from "@radix-ui/react-aspect-ratio";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
+import { Check, Plus } from "lucide-react";
 import { GameWithPrice } from "@/types/games";
 import Link from "next/link";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { setInCartGames } from "@/store/slices/gamesSlice";
 
 export function SkeletonCard() {
   return (
@@ -39,6 +41,12 @@ export default function GameCard({
   game: GameWithPrice;
   showAction?: boolean;
 }) {
+  const dispatch = useAppDispatch();
+  const cart = useAppSelector((state) => state.games.inCartGames);
+  const addToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    dispatch(setInCartGames(game));
+  };
   return (
     <Link href={`/games/${game.id}`}>
       <Card className="bg-primary text-primary-foreground border-0 rounded-sm overflow-hidden gap-0 py-0 hover:brightness-110 hover:shadow-primary hover:shadow-lg transition-transform">
@@ -61,12 +69,24 @@ export default function GameCard({
             <span>
               {game.price ? `${game.currency} ${game.price}` : "Free to Play"}
             </span>
-            <Button
-              variant="inverse"
-              className="font-special hover:bg-foreground hover:text-background hover:scale-110"
-            >
-              <Plus />
-            </Button>
+            {cart.some((g) => g.id === game.id) ? (
+              <Button
+                variant="inverse"
+                className="font-special hover:bg-foreground hover:text-background hover:scale-110"
+                onClick={addToCart}
+                disabled
+              >
+                <Check />
+              </Button>
+            ) : (
+              <Button
+                variant="inverse"
+                className="font-special hover:bg-foreground hover:text-background hover:scale-110"
+                onClick={addToCart}
+              >
+                <Plus />
+              </Button>
+            )}
           </CardFooter>
         ) : (
           <CardFooter className="text-sm px-4 pb-4 h-13 flex justify-between items-center">

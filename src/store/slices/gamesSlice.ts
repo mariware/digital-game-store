@@ -1,6 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import {
-  ScreenshotsTypes,
   GamesState,
   GameWithPrice,
   GameDetailsWithPrice,
@@ -40,8 +39,20 @@ export const gamesSlice = createSlice({
     setSearchedGames: (state, action: PayloadAction<GameWithPrice[]>) => {
       state.searchedGames = action.payload;
     },
-    setInCartGames: (state, action: PayloadAction<GameWithPrice[]>) => {
-      state.inCartGames = action.payload;
+    setInCartGames: (state, action: PayloadAction<GameWithPrice>) => {
+      if (!state.inCartGames.some((game) => game.id === action.payload.id)) {
+        state.inCartGames.push(action.payload);
+      }
+      saveToLocalStorage("inCartGames", state.inCartGames);
+    },
+    removeInCartGame: (state, action: PayloadAction<number>) => {
+      state.inCartGames = state.inCartGames.filter(
+        (game) => game.id !== action.payload,
+      );
+      saveToLocalStorage("inCartGames", state.inCartGames);
+    },
+    resetInCartGames: (state) => {
+      state.inCartGames = [];
       saveToLocalStorage("inCartGames", state.inCartGames);
     },
     setGameSpecification: (
@@ -69,6 +80,8 @@ export const {
   resetGames,
   setSearchedGames,
   setInCartGames,
+  removeInCartGame,
+  resetInCartGames,
   setGameSpecification,
   setLastFetchTime,
   setGenres,
