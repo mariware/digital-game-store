@@ -54,7 +54,10 @@ export default function Category({
       className="flex flex-col gap-8 font-sans min-h-screen p-8 sm:p-12 md:p-16 lg:p-20 bg-foreground text-background"
       suppressHydrationWarning
     >
-      <h1 className="flex flex-col gap-4 font-special text-4xl text-center sm:text-left w-full">
+      <h1 className="flex justify-center sm:justify-start gap-4 font-special text-4xl text-center sm:text-left w-full">
+        <Link href="/categories" className="hidden sm:flex">
+          Categories<span className="pl-4">&rsaquo;</span>
+        </Link>
         {genre?.name}
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">

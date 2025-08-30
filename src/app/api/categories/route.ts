@@ -16,8 +16,6 @@ export async function GET(req: NextRequest) {
     const data: GamesListResponse = await res.json();
     games = data.results;
 
-    console.log(games);
-
     return enrichGames(games);
   } catch (error) {
     console.error(error);

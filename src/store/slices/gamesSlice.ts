@@ -16,7 +16,6 @@ const initialState: GamesState = {
   searchedGames: [],
   inCartGames: loadFromLocalStorage<GameWithPrice[]>("inCartGames", []),
   gameSpecification: undefined,
-  gameScreenshots: [],
   lastFetchTime: loadFromLocalStorage<number | undefined>(
     "lastFetchTime",
     undefined,
@@ -51,9 +50,6 @@ export const gamesSlice = createSlice({
     ) => {
       state.gameSpecification = action.payload;
     },
-    setGameScreenshots: (state, action: PayloadAction<ScreenshotsTypes[]>) => {
-      state.gameScreenshots = action.payload;
-    },
     setLastFetchTime: (state, action: PayloadAction<number>) => {
       state.lastFetchTime = action.payload;
       saveToLocalStorage("lastFetchTime", state.gameSets);
@@ -74,7 +70,6 @@ export const {
   setSearchedGames,
   setInCartGames,
   setGameSpecification,
-  setGameScreenshots,
   setLastFetchTime,
   setGenres,
   resetGenres,

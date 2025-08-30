@@ -9,6 +9,7 @@ import {
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import GenreCard, { SkeletonCard } from "@/components/GenreCard";
+import { Genre } from "@/types/games";
 
 export default function Categories() {
   const dispatch = useAppDispatch();
@@ -26,7 +27,11 @@ export default function Categories() {
       fetch(`/api/genres`)
         .then((res) => res.json())
         .then((data) => {
-          dispatch(setGenres(data));
+          dispatch(
+            setGenres(
+              data.sort((a: Genre, b: Genre) => a.name.localeCompare(b.name)),
+            ),
+          );
           dispatch(setLastFetchTime(Date.now()));
         })
         .finally(() => setLoading(false));

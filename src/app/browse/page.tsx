@@ -1,7 +1,11 @@
 "use client";
 
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { setLastFetchTime, setSearchedGames } from "@/store/slices/gamesSlice";
+import {
+  setGames,
+  setLastFetchTime,
+  setSearchedGames,
+} from "@/store/slices/gamesSlice";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import {
@@ -29,6 +33,7 @@ export default function Browse() {
       .then((res) => res.json())
       .then((data) => {
         dispatch(setSearchedGames(data));
+        dispatch(setGames({ key: "all", games: data }));
         dispatch(setLastFetchTime(Date.now()));
       })
       .finally(() => setLoading(false));

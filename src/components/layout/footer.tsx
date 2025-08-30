@@ -26,7 +26,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="w-full flex flex-col font-sans text-sm bg-foreground text-neutral-100 p-4 pb-8 gap-4 justify-between items-center">
+    <footer className="w-full flex flex-col font-sans text-sm bg-foreground text-neutral-100 p-4 pt-8 pb-16 gap-4 justify-between items-center">
       <div className="flex flex-col w-full font-special items-center sm:flex-row sm:justify-around gap-2">
         <Logo variant="boxed" className="h-9 mb-2 sm:mb-0" />
         {navLinks.map(({ href, label }) => (

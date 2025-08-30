@@ -48,13 +48,12 @@ export type GameDetails = GameSummary & {
   developers: NameTypes[];
   publishers: NameTypes[];
   genres: NameTypes[];
-  short_screenshots: ScreenshotsTypes[];
 };
 export type GameWithPrice = GameSummary & {
   price: number | null;
   currency: string | null;
 };
-export type GameDetailsWithPrice = GameSummary & {
+export type GameDetailsWithPrice = GameDetails & {
   price: number | null;
   currency: string | null;
 };
@@ -71,7 +70,6 @@ export type GamesState = {
   searchedGames: GameWithPrice[]; // filtered list
   inCartGames: GameWithPrice[]; // cart items
   gameSpecification?: GameDetailsWithPrice; // single game detail
-  gameScreenshots: ScreenshotsTypes[]; // screenshots for a game
   lastFetchTime?: number; // timestamp of last fetch
   genres: Genre[]; // available genres
 };
