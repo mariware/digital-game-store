@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
+  <img src="public/logomark-variant.svg" alt="Project Logo" width="300" />
 
-## Getting Started
+  ### Glitch Store by [mariware](https://github.com/mariware)
+  Find your next hit without a hitch. [Live Demo: Glitch Store](https://glitch-store-by-mariware.vercel.app)
+</div>
 
-First, run the development server:
+## 📖 Features 
+
+**Glitch Store** is a mock digital game store that lets users explore a curated catalog of titles, view detailed game pages, and simulate the checkout process. All game metadata is provided by the **RAWG API**, while up-to-date pricing information is sourced from **NEXARDA**.
+
+- 🕹️ **Game Catalog**: Browse a regularly updated list of games.  
+- 💰 **Accurate Pricing**: Prices sourced directly from NEXARDA.  
+- 📄 **Game Details**: View descriptions, genres, and more on dedicated pages.  
+- 🛒 **Cart & Checkout**: Add games to cart, calculate totals, and test a mock checkout flow.  
+- 🎨 **Responsive Design**: Works seamlessly across desktop, tablet, and mobile.
+
+## 🚀 Tech Stack
+
+This project is built with <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" height="14" alt="React" /> [**React**](https://react.dev/) for component-based UI and <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg" height="14" alt="Next.js" /> [**Next.js**](https://nextjs.org/) as the framework for server-side rendering and fast applications. It is styled with <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" height="14" alt="TailwindCSS" /> [**TailwindCSS**](https://tailwindcss.com/) along with [**shadcn/ui**](https://ui.shadcn.com/) for accessible, prebuilt UI components. The app uses <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redux/redux-original.svg" height="14" alt="Redux Toolkit" /> [**Redux Toolkit**](https://redux-toolkit.js.org/) for state management. Game metadata is fetched from [**RAWG API**](https://rawg.io/apidocs), while price data comes from the [**NEXARDA**](https://www.nexarda.com/).  
+
+## 📦 Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/resume-builder.git
+cd resume-builder
+```
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The app will be available at `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📸 Screenshots
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+<div align="center">
+  <img src="public/screenshots/01.jpeg" alt="screenshot1" width="49%" />
+  <img src="public/screenshots/02.jpeg" alt="screenshot2" width="49%" />
+  <img src="public/screenshots/03.jpeg" alt="screenshot3" width="49%" />
+  <img src="public/screenshots/04.jpeg" alt="screenshot4" width="49%" />
+</div>
 
-## Learn More
+## 📝 Notes
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project was created as part of [The Odin Project's Full Stack Course](https://www.theodinproject.com/lessons/node-path-react-new-shopping-cart). It is intended as a practice project. As such, no actual purchases are processed. All game and price data belongs to their respective providers
